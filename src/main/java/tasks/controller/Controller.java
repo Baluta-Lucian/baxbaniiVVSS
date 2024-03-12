@@ -27,7 +27,7 @@ import java.util.Date;
 
 public class Controller {
     private static final Logger log = Logger.getLogger(Controller.class.getName());
-    public ObservableList<Task> tasksList;
+    private ObservableList<Task> tasksList;
     TasksService service;
     DateService dateService;
 
@@ -35,7 +35,7 @@ public class Controller {
     public static Stage infoStage;
 
     @FXML
-    public  TableView tasks;
+    public  TableView<Task> tasks;
     @FXML
     private TableColumn<Task, String> columnTitle;
     @FXML
@@ -55,7 +55,7 @@ public class Controller {
 
     public void setService(TasksService service){
         this.service=service;
-        this.dateService=new DateService(service);
+        this.dateService=new DateService();
         this.tasksList=service.getObservableList();
         updateCountLabel(tasksList);
         tasks.setItems(tasksList);
@@ -106,7 +106,7 @@ public class Controller {
             editNewStage = new Stage();
             NewEditController.setCurrentStage(editNewStage);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/new-edit-task.fxml"));
-            Parent root = loader.load();//getClass().getResource("/fxml/new-edit-task.fxml"));
+            Parent root = loader.load(); //getClass().getResource("/fxml/new-edit-task.fxml"));
             NewEditController editCtrl = loader.getController();
             editCtrl.setService(service);
             editCtrl.setTasksList(tasksList);
@@ -161,7 +161,7 @@ public class Controller {
         Date start = getDateFromFilterField(datePickerFrom.getValue(), fieldTimeFrom.getText());
         Date end = getDateFromFilterField(datePickerTo.getValue(), fieldTimeTo.getText());
 
-        Iterable<Task> filtered =  service.filterTasks(start, end);
+        Iterable<Task> filtered =  new ArrayList<>();
 
         ObservableList<Task> observableTasks = FXCollections.observableList((ArrayList)filtered);
         tasks.setItems(observableTasks);

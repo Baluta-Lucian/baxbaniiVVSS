@@ -311,3 +311,11 @@
 2024-03-12 12:07:35 INFO  Main:42 - application start
 2024-03-12 12:07:35 INFO  Controller:72 - Main controller initializing
 2024-03-12 12:07:38 INFO  NewEditController:90 - new/edit window initializing
+2024-03-12 14:44:14 INFO  Main:37 - saved data reading
+2024-03-12 14:44:14 INFO  Main:42 - application start
+2024-03-12 14:44:15 INFO  Controller:72 - Main controller initializing
+2024-03-12 14:44:25 INFO  NewEditController:90 - new/edit window initializing
+2024-03-12 14:44:25 INFO  ErrorController:20 - error info window initializing
+2024-03-12 14:44:32 INFO  NewEditController:90 - new/edit window initializing
+2024-03-12 14:44:37 INFO  ErrorController:20 - error info window initializing
+2024-03-12 14:44:49 INFO  TaskInfoController:40 - task info window initializing
