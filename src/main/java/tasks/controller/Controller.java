@@ -15,7 +15,8 @@ import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 import tasks.model.Task;
 import tasks.services.DateService;
-import tasks.services.TaskIO;
+import tasks.persistence.TaskIO;
+
 import tasks.services.TasksService;
 import tasks.view.Main;
 
@@ -32,8 +33,6 @@ public class Controller {
 
     public static Stage editNewStage;
     public static Stage infoStage;
-
-    public static TableView mainTable;
 
     @FXML
     public  TableView tasks;
@@ -60,7 +59,6 @@ public class Controller {
         this.tasksList=service.getObservableList();
         updateCountLabel(tasksList);
         tasks.setItems(tasksList);
-        mainTable = tasks;
 
         tasksList.addListener((ListChangeListener.Change<? extends Task> c) -> {
                     updateCountLabel(tasksList);
@@ -80,6 +78,25 @@ public class Controller {
         labelCount.setText(list.size()+ " elements");
     }
 
+
+    private void showErrorWindow(String errorMessage) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/field-validator.fxml"));
+            Parent root = loader.load();//getClass().getResource("/fxml/new-edit-task.fxml"));
+
+            ErrorController errorController = loader.getController();
+            errorController.setErrorMessage(errorMessage);
+
+            stage.setScene(new Scene(root, 350, 150));
+            stage.setResizable(false);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        }
+        catch (IOException ioe){
+            log.error("error loading field-validator.fxml");
+        }
+    }
     @FXML
     public void showTaskDialog(ActionEvent actionEvent){
         Object source = actionEvent.getSource();
@@ -93,7 +110,14 @@ public class Controller {
             NewEditController editCtrl = loader.getController();
             editCtrl.setService(service);
             editCtrl.setTasksList(tasksList);
-            editCtrl.setCurrentTask((Task)mainTable.getSelectionModel().getSelectedItem());
+
+            Task currentTask = (Task)tasks.getSelectionModel().getSelectedItem();
+            if (currentTask==null && ((Button)source).getId().equals("btnEdit")) {
+                showErrorWindow("Select a task first!");
+                return;
+            }
+
+            editCtrl.setCurrentTask((Task)tasks.getSelectionModel().getSelectedItem());
             editNewStage.setScene(new Scene(root, 600, 350));
             editNewStage.setResizable(false);
             editNewStage.initOwner(Main.primaryStage);
@@ -116,9 +140,14 @@ public class Controller {
             Stage stage = new Stage();
             FXMLLoader loader =new FXMLLoader(getClass().getResource("/fxml/task-info.fxml"));
             Parent root = loader.load();
+
+            TaskInfoController taskInfoController = loader.getController();
+            taskInfoController.setCurrentTask((Task)tasks.getSelectionModel().getSelectedItem());
+
             stage.setScene(new Scene(root, 550, 350));
             stage.setResizable(false);
             stage.setTitle("Info");
+            stage.initOwner(Main.primaryStage);
             stage.initModality(Modality.APPLICATION_MODAL);//??????
             infoStage = stage;
             stage.show();

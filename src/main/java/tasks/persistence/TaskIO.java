@@ -1,10 +1,8 @@
-package tasks.services;
+package tasks.persistence;
 
 import javafx.collections.ObservableList;
 import org.apache.log4j.Logger;
-import tasks.model.LinkedTaskList;
 import tasks.model.Task;
-import tasks.model.TaskList;
 import tasks.view.*;
 
 import java.io.*;

@@ -1,7 +1,7 @@
 package tasks.model;
 
 import org.apache.log4j.Logger;
-import tasks.services.TaskIO;
+import tasks.persistence.TaskIO;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -14,7 +14,7 @@ public class Task implements Serializable, Cloneable {
     private Date start;
     private Date end;
     private int interval;
-    private boolean active;
+    private boolean isActive;
 
     private static final Logger log = Logger.getLogger(Task.class.getName());
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -23,24 +23,54 @@ public class Task implements Serializable, Cloneable {
         return sdf;
     }
     public Task(String title, Date time){
-        if (time.getTime() < 0) {
-            log.error("time below bound");
-            throw new IllegalArgumentException("Time cannot be negative");
-        }
+//        if (time.getTime() < 0) {
+//            log.error("time below bound");
+//            throw new IllegalArgumentException("Time cannot be negative");
+//        }
         this.title = title;
         this.time = time;
         this.start = time;
         this.end = time;
     }
+
+    public Task(String title, Date time, boolean isActive){
+//        if (time.getTime() < 0) {
+//            log.error("time below bound");
+//            throw new IllegalArgumentException("Time cannot be negative");
+//        }
+        this.title = title;
+        this.time = time;
+        this.start = time;
+        this.end = time;
+        this.isActive=isActive;
+    }
+
+    public Task(String title, Date start, Date end, int interval, boolean isActive){
+//        if (start.getTime() < 0 || end.getTime() < 0) {
+//            log.error("time below bound");
+//            throw new IllegalArgumentException("Time cannot be negative");
+//        }
+//        if (interval < 1) {
+//            log.error("interval < than 1");
+//            throw new IllegalArgumentException("interval should me > 1");
+//        }
+        this.title = title;
+        this.start = start;
+        this.end = end;
+        this.interval = interval;
+        this.time = start;
+        this.isActive = isActive;
+    }
+
     public Task(String title, Date start, Date end, int interval){
-        if (start.getTime() < 0 || end.getTime() < 0) {
-            log.error("time below bound");
-            throw new IllegalArgumentException("Time cannot be negative");
-        }
-        if (interval < 1) {
-            log.error("interval < than 1");
-            throw new IllegalArgumentException("interval should me > 1");
-        }
+//        if (start.getTime() < 0 || end.getTime() < 0) {
+//            log.error("time below bound");
+//            throw new IllegalArgumentException("Time cannot be negative");
+//        }
+//        if (interval < 1) {
+//            log.error("interval < than 1");
+//            throw new IllegalArgumentException("interval should me > 1");
+//        }
         this.title = title;
         this.start = start;
         this.end = end;
@@ -56,11 +86,11 @@ public class Task implements Serializable, Cloneable {
         this.title = title;
     }
     public boolean isActive(){
-        return this.active;
+        return this.isActive;
     }
 
     public void setActive(boolean active){
-        this.active = active;
+        this.isActive = active;
     }
 
     public Date getTime() {
@@ -146,7 +176,7 @@ public class Task implements Serializable, Cloneable {
         if (!start.equals(task.start)) return false;
         if (!end.equals(task.end)) return false;
         if (interval != task.interval) return false;
-        if (active != task.active) return false;
+        if (isActive != task.isActive) return false;
         return title.equals(task.title);
     }
 
@@ -157,7 +187,7 @@ public class Task implements Serializable, Cloneable {
         result = 31 * result + start.hashCode();
         result = 31 * result + end.hashCode();
         result = 31 * result + interval;
-        result = 31 * result + (active ? 1 : 0);
+        result = 31 * result + (isActive ? 1 : 0);
         return result;
     }
 
@@ -169,7 +199,7 @@ public class Task implements Serializable, Cloneable {
                 ", start=" + start +
                 ", end=" + end +
                 ", interval=" + interval +
-                ", active=" + active +
+                ", active=" + isActive +
                 '}';
     }
     @Override
