@@ -19,6 +19,7 @@ import tasks.persistence.TaskIO;
 import tasks.services.TasksService;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -162,7 +163,7 @@ public class NewEditController {
     }
 
     @FXML
-    public void saveChanges(){
+    public void saveChanges() throws ParseException {
         Task savedTask = null;
 
         boolean isActive = checkBoxActive.isSelected();
