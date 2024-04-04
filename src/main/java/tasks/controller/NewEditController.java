@@ -73,7 +73,7 @@ public class NewEditController {
 
     public void setService(TasksService service){
         this.service =service;
-        this.dateService =new DateService(service);
+        this.dateService =new DateService();
     }
     public void setCurrentTask(Task task){
         this.currentTask=task;
