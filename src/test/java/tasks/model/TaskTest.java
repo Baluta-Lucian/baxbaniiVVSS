@@ -9,6 +9,7 @@ import tasks.validator.TaskValidator;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -83,6 +84,19 @@ class TaskTest {
                 () -> tasksService.parseFromStringToSeconds(stringTime),
                 "Expected parseFromStringToSeconds() to throw, but it didnt"
         );
+    }
+
+    @Test
+    void invalidNextTimeAfter(){
+        Task task1 = new Task("Test", new Date(2024, 4, 11), new Date(2024, 4, 11),3600, Boolean.TRUE );
+        assert task1.nextTimeAfter(new Date(2024, 4, 11)) == null;
+    }
+
+    @Test
+    void validNextTimeAfter(){
+        Task task2 = new Task("Test2", new Date(2024, 4, 11), Boolean.TRUE);
+        Date dateTest = new Date(2024, 4, 11);
+        assert Objects.equals(task2.nextTimeAfter(new Date(2024, 3, 11)), dateTest);
     }
 
     @AfterEach
