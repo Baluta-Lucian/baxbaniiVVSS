@@ -319,3 +319,6 @@
 2024-03-12 14:44:32 INFO  NewEditController:90 - new/edit window initializing
 2024-03-12 14:44:37 INFO  ErrorController:20 - error info window initializing
 2024-03-12 14:44:49 INFO  TaskInfoController:40 - task info window initializing
+2024-04-24 11:37:17 ERROR TaskValidator:24 - interval < than 1
+2024-04-24 11:37:27 ERROR TaskValidator:24 - interval < than 1
+2024-04-24 11:39:35 ERROR TaskValidator:24 - interval < than 1
