@@ -1,2 +1,7 @@
+tasks\lab04\ArrayTaskListUnitTest.class
+tasks\lab04\TaskServiceUnitTest.class
 tasks\services\DateServiceTest.class
+tasks\lab04\Step2IntegrationTests.class
 tasks\model\TaskTest.class
+tasks\lab04\Step3IntegrationTests.class
+tasks\lab04\TaskUnitTest.class
