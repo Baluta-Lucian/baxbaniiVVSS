@@ -22,7 +22,7 @@ public class TaskValidator {
         }
         if (interval < 1) {
             log.error("interval < than 1");
-            throw new IllegalArgumentException("interval should me > 1");
+            throw new IllegalArgumentException("interval should be > 1");
         }
     }
 }
