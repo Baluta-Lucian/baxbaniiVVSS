@@ -14,5 +14,7 @@ module tasks {
     exports tasks.utils;
     opens tasks.utils to javafx.base;
     exports tasks.persistence;
+    exports tasks.validator;
+    exports tasks.services;
     opens tasks.persistence to javafx.base;
 }

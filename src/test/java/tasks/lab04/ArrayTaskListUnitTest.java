@@ -28,6 +28,7 @@ public class ArrayTaskListUnitTest {
     public void test1() {
         ArrayTaskList arrayTaskList =  new ArrayTaskList();
         Task task1 = spy(task);
+        System.out.println(task1);
         int prev_size = arrayTaskList.size();
         arrayTaskList.add(task1);
         assert arrayTaskList.size() == prev_size+1;

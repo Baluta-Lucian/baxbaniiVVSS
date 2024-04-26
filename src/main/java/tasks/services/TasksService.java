@@ -21,6 +21,14 @@ public class TasksService {
         this.taskValidator=taskValidator;
     }
 
+    public ArrayTaskList getTasks() {
+        return tasks;
+    }
+
+    public TaskValidator getTaskValidator() {
+        return taskValidator;
+    }
+
     public ObservableList<Task> getObservableList(){
         return FXCollections.observableArrayList(tasks.getAll());
     }

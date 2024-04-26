@@ -1,6 +1,5 @@
 package tasks.lab04;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -15,15 +14,14 @@ import tasks.validator.TaskValidator;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.*;
 
 public class TaskServiceUnitTest {
     @Mock
-    ArrayTaskList arrayTaskList;
+    public ArrayTaskList arrayTaskList;
 
     @Mock
-    TaskValidator taskValidator;
+    public TaskValidator taskValidator;
 
     @InjectMocks
     private TasksService tasksService;
@@ -42,10 +40,6 @@ public class TaskServiceUnitTest {
     }
 
 
-    @Mock
-    Task task1;
-
-    //add task valid
     @Test
     public void test1() {
         String title = "One time task1";
@@ -53,14 +47,22 @@ public class TaskServiceUnitTest {
         boolean isActive = true;
 
         Task validTaskToAdd = spy(validTask);
+        when(validTaskToAdd.getTitle()).thenReturn(title);
+        when(validTaskToAdd.getTime()).thenReturn(date);
+        when(validTaskToAdd.isActive()).thenReturn(isActive);
+
         Mockito.doNothing().when(taskValidator).validate(title, date, isActive);
         Mockito.doNothing().when(arrayTaskList).add(validTaskToAdd);
 
         Task result = tasksService.addOneTimeTask(title, date, isActive);
-        assert result.equals(validTaskToAdd);
+        verify(taskValidator, times(1)).validate(title, date, isActive);
+        verify(arrayTaskList, times(1)).add(any());
+
+        assert result.getTitle().equals(validTaskToAdd.getTitle());
+        assert result.getTime().equals(validTaskToAdd.getTime());
+        assert result.isActive()==validTaskToAdd.isActive();
     }
 
-    //add task invalid
     @Test
     public void test2() {
         String title = "One time task1";
@@ -75,5 +77,7 @@ public class TaskServiceUnitTest {
                 () -> tasksService.addRepetitiveTask(title, start, end , interval, isActive),
                 "interval should be > 1"
         );
+        verify(taskValidator, times(1)).validate(title, start, end , interval, isActive);
+        verify(arrayTaskList, times(0)).add(any());
     }
 }

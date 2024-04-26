@@ -1,10 +1,7 @@
 package tasks.lab04;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import tasks.model.Task;
 import tasks.persistence.ArrayTaskList;
 import tasks.services.TasksService;
@@ -13,7 +10,7 @@ import tasks.validator.TaskValidator;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.*;
 
 public class Step2IntegrationTests {
     private ArrayTaskList arrayTaskList = new ArrayTaskList();
@@ -50,6 +47,10 @@ public class Step2IntegrationTests {
 
         Task addResult = tasksService.addOneTimeTask(title, date, isActive);
         Task validTaskAdded = spy(validTask);
+        when(validTaskAdded.getTitle()).thenReturn(title);
+        when(validTaskAdded.getTime()).thenReturn(date);
+        when(validTaskAdded.isActive()).thenReturn(isActive);
+
         assert addResult.getTitle().equals(validTaskAdded.getTitle());
         assert addResult.getTime().equals(validTaskAdded.getTime());
         assert addResult.isActive()==validTaskAdded.isActive();
