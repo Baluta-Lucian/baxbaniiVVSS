@@ -1,0 +1,15 @@
+
+6
+java:S2885" Make "sdf" an instance variable.(¸‰ˆí
+Q	java:S125"<This block of commented-out lines of code should be removed.(Ñ«ãœ
+Q	java:S125%"<This block of commented-out lines of code should be removed.(Ñ«ãœ
+Q	java:S1251"<This block of commented-out lines of code should be removed.(ó™ÖÄ
+Q	java:S125B"<This block of commented-out lines of code should be removed.(ó™ÖÄ
+D
+java:S1940~")Use the opposite operator ("!=") instead.(‡í€µşÿÿÿÿ
+n
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(Î¥­üÿÿÿÿ
+o
+java:S2975Î"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(®Ç‹¹şÿÿÿÿ
+B
+java:S1068"'Remove this unused "log" private field.(à¿¦¯ùÿÿÿÿ
