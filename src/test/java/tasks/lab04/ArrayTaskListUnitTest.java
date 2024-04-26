@@ -15,7 +15,7 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.spy;
 
-class ArrayTaskListUnitTest {
+public class ArrayTaskListUnitTest {
     private Task task;
 
 
