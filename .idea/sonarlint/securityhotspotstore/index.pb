@@ -65,3 +65,9 @@ S
 Q.idea/sonarlint/securityhotspotstore/e/b/eb67f05314178cc6b3a1e4f981a808f271e00c26,9\3\932e07a62db140ca5425d385d2391bd41b2c7786
 c
 3src/main/java/tasks/persistence/LinkedTaskList.java,7\3\7353d9a14379170c3082b6d3c2c5d4358a846823
+R
+"src/main/java/tasks/view/Main.java,a\4\a4e952c1a4765c6cf9a337826a42d32c3f95db7f
+N
+src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
+N
+src/test/java/module-info.java,9\4\9424c03a1087f4174488c49e19ca2a9e10d4629e

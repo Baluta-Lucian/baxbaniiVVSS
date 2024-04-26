@@ -1,15 +1,10 @@
 package tasks.lab04;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import tasks.model.Task;
 import tasks.persistence.ArrayTaskList;
 
-import java.text.ParseException;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
