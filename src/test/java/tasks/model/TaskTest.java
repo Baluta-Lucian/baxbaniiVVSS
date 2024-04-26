@@ -95,7 +95,9 @@ class TaskTest {
     @Test
     void validNextTimeAfter(){
         Task task2 = new Task("Test2", new Date(2024, 4, 11), Boolean.TRUE);
+
         Date dateTest = new Date(2024, 4, 11);
+
         assert Objects.equals(task2.nextTimeAfter(new Date(2024, 3, 11)), dateTest);
     }
 
